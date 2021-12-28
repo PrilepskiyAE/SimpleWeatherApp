@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools">
 <LinearLayout
     android:layout_width="wrap_content"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textSize="17sp"
-        tools:text="19:00"/>
+        android:text="19:00"/>
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         android:layout_gravity="center_horizontal"
         android:includeFontPadding="false"
         android:textSize="20sp"
-        tools:text="20\u00B0"/>
+        android:text="20\u00B0"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             android:id="@+id/item_hourly_weather_condition_icon"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            tools:src="@drawable/ic_outline_wb_sunny_24"/>
+            android:src="@drawable/ic_outline_wb_sunny_24"/>
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             android:id="@+id/item_hourly_pop_tv"
             android:includeFontPadding="false"
             android:textSize="12sp"
-            tools:text="20%"/>
+            android:text="20%"/>
 
 
 

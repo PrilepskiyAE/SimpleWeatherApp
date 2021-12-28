@@ -2,12 +2,30 @@ package com.ambrella.simpleweatherapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.ambrella.simpleweatherapp.view.adapter.MainDailyListAdapter
+import com.ambrella.simpleweatherapp.view.adapter.MainHourlyListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+       initViews()
+main_hourly_list.apply {
+    adapter= MainHourlyListAdapter()
+    layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+    setHasFixedSize(true)
+}
+        main_daily_list.apply {
+            adapter=MainDailyListAdapter()
+            layoutManager=LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+            setHasFixedSize(true)
+        }
+
+    }
+    fun initViews()
+    {
         main_city_name_tv.text="Moscow"
         main_date_tv.text="31 decabr"
         main_weather_condition_icon.setImageResource(R.drawable.ic_outline_wb_sunny_24)

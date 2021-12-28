@@ -1,6 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/MainTextViewStyle"
+            android:id="@+id/item_daily_date_tv"
+            android:layout_gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:textSize="17sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="1 Tuesday"
+            />
+        <ImageView
+            android:id="@+id/item_daily_weather_condition_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_outline_wb_sunny_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/MainTextViewStyle"
+            android:id="@+id/item_daily_pop_tv"
+            android:layout_marginStart="4dp"
+            android:layout_gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:textSize="17sp"
+            android:text="25%"
+            app:layout_constraintStart_toEndOf="@id/item_daily_weather_condition_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_daily_min_temp_tv"
+            android:gravity="end"
+            android:layout_marginEnd="18dp"
+            android:includeFontPadding="false"
+            android:textSize="17sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="19\u00B0"
+            />
+
+        <LinearLayout
+            android:id="@+id/item_daily_divinder"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/divaderColor"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/item_daily_min_temp_tv"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_daily_max_temp_tv"
+            android:gravity="end"
+            android:layout_marginEnd="18dp"
+            android:includeFontPadding="false"
+            android:textSize="17sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/item_daily_divinder"
+            android:text="18\u00B0"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
