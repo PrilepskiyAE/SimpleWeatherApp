@@ -68,6 +68,7 @@
             android:layout_height="180dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ImageContrastCheck"
             tools:src="@mipmap/could3x" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -77,48 +78,47 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.45" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
+        <ImageView
+            android:id="@+id/main_weather_condition_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toStartOf="@+id/main_weather_image"
+            android:layout_marginStart="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/main_temp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/main_weather_image">
+            tools:src="@drawable/ic_outline_wb_sunny_24" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:src="@drawable/ic_outline_wb_sunny_24" />
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/MainTextViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:gravity="center"
-                tools:text="clear sky" />
-
-        </LinearLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/main_weather_condition_description"
+            style="@style/MainTextViewStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/main_weather_condition_icon"
+            app:layout_constraintEnd_toStartOf="@+id/main_weather_image"
+            app:layout_constraintStart_toEndOf="@+id/main_weather_condition_icon"
+            app:layout_constraintTop_toTopOf="@+id/main_weather_condition_icon"
+            tools:text="clear sky" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/main_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
             android:includeFontPadding="false"
-            android:textSize="96dp"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-            app:layout_constraintStart_toStartOf="@+id/linearLayout"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            android:textSize="96sp"
+            app:autoSizeMinTextSize="88sp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toStartOf="@+id/main_weather_image"
+            app:layout_constraintStart_toStartOf="parent"
             tools:text="25\u00B0" />
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="@+id/main_temp"
-            app:layout_constraintStart_toStartOf="@+id/main_temp"
-            app:layout_constraintTop_toBottomOf="@+id/main_temp">
+            app:layout_constraintStart_toStartOf="@+id/main_temp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -134,8 +134,10 @@
                     android:textSize="12sp" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/main_temp_min_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:textSize="18sp"
                     tools:text="19" />
 
@@ -165,10 +167,13 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     style="@style/MainTextViewStyle"
+                    android:id="@+id/main_temp_max_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:textSize="18sp"
-                    tools:text="19" />
+                    tools:text="28" />
+
 
 
             </LinearLayout>
@@ -197,6 +202,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     style="@style/MainTextViewStyle"
+                    android:id="@+id/main_pressure_mu_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -223,6 +229,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     style="@style/MainTextViewStyle"
+                    android:id="@+id/main_humidity_mu_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -244,6 +251,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     style="@style/MainTextViewStyle"
+                    android:id="@+id/main_wind_speed_mu_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -275,6 +283,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     style="@style/MainTextViewStyle"
+                    android:id="@+id/main_sumrise_mu_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -301,6 +310,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     style="@style/MainTextViewStyle"
+                    android:id="@+id/main_sumset_mu_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -317,6 +327,61 @@
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        style="?attr/bottomSheetStyle"
+        android:id="@+id/main_bottom_sheets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:background="@drawable/bg_main_bottom_sheets"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="160dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        android:layout_gravity="end">
+        <LinearLayout
+            android:id="@+id/main_bottom_sheets_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="16dp"
+            android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_main_bootom_sheeps_swaper"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_gravity="center"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_hourly_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:layout_marginBottom="8dp"
+                tools:layout_height="80dp"
+                />
+            <LinearLayout
+                style="@style/DiviaderStyle"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:orientation="horizontal"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_daily_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:layout_marginBottom="8dp"
+                tools:layout_height="16dp"/>
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

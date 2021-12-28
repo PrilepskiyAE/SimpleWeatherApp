@@ -3,11 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Project/Android/SimpleWeatherApp/app/src/main/res/drawable/bg_main_bootom_sheeps_swaper.xml" value="0.21354166666666666" />
+        <entry key="..\:/Project/Android/SimpleWeatherApp/app/src/main/res/drawable/bg_main_bottom_sheets.xml" value="0.21354166666666666" />
         <entry key="..\:/Project/Android/SimpleWeatherApp/app/src/main/res/drawable/ic_baseline_fmd_bad_24.xml" value="0.1" />
         <entry key="..\:/Project/Android/SimpleWeatherApp/app/src/main/res/drawable/ic_baseline_outlined_flag_24.xml" value="0.1" />
         <entry key="..\:/Project/Android/SimpleWeatherApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Project/Android/SimpleWeatherApp/app/src/main/res/drawable/ic_outline_wb_sunny_24.xml" value="0.1" />
-        <entry key="..\:/Project/Android/SimpleWeatherApp/app/src/main/res/layout/activity_main.xml" value="0.3736689254598258" />
+        <entry key="..\:/Project/Android/SimpleWeatherApp/app/src/main/res/layout/activity_main.xml" value="0.2482566248256625" />
+        <entry key="..\:/Project/Android/SimpleWeatherApp/app/src/main/res/layout/item_main_daily.xml" value="0.19739583333333333" />
+        <entry key="..\:/Project/Android/SimpleWeatherApp/app/src/main/res/layout/item_main_hourly.xml" value="0.5" />
       </map>
     </option>
   </component>
