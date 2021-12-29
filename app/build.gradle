@@ -46,8 +46,9 @@ dependencies {
     //view
     implementation 'com.google.android.material:material:1.4.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-
+// butterknife
     implementation 'com.jakewharton:butterknife:10.2.3'
     kapt 'com.jakewharton:butterknife-compiler:10.2.3'
-
+//GPS
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
 }

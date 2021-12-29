@@ -1,5 +1,6 @@
 package com.ambrella.simpleweatherapp.view.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,9 +19,10 @@ class MainDailyListAdapter: BaseAdapter<DailyWatherModel>() {
         return DailyViewHolder(view)
     }
 
-
+    @SuppressLint("NonConstantResourceId")
     inner class DailyViewHolder(view: View):BaseViewHolder(view)
     {
+
         @BindView(R.id.item_daily_date_tv)
         lateinit var date:MaterialTextView
         @BindView(R.id.item_daily_pop_tv)
