@@ -1,22 +1,12 @@
 package com.ambrella.simpleweatherapp
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager
 
 import android.location.Location
 import com.google.android.gms.location.LocationRequest
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ambrella.simpleweatherapp.bussness.model.DailyWatherModel
-import com.ambrella.simpleweatherapp.bussness.model.HourlyWeatherModel
-import com.ambrella.simpleweatherapp.bussness.model.WeatherData
 import com.ambrella.simpleweatherapp.presenters.MainPresenter
 import com.ambrella.simpleweatherapp.view.MainView
 import com.ambrella.simpleweatherapp.view.adapter.MainDailyListAdapter

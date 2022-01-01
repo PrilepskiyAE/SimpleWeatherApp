@@ -1,8 +1,5 @@
 package com.ambrella.simpleweatherapp.view
 
-import com.ambrella.simpleweatherapp.bussness.model.DailyWatherModel
-import com.ambrella.simpleweatherapp.bussness.model.HourlyWeatherModel
-import com.ambrella.simpleweatherapp.bussness.model.WeatherData
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle
 
