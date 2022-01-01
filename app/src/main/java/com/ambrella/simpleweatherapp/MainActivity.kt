@@ -14,6 +14,11 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ambrella.simpleweatherapp.bussness.model.DailyWatherModel
+import com.ambrella.simpleweatherapp.bussness.model.HourlyWeatherModel
+import com.ambrella.simpleweatherapp.bussness.model.WeatherData
+import com.ambrella.simpleweatherapp.presenters.MainPresenter
+import com.ambrella.simpleweatherapp.view.MainView
 import com.ambrella.simpleweatherapp.view.adapter.MainDailyListAdapter
 import com.ambrella.simpleweatherapp.view.adapter.MainHourlyListAdapter
 import com.google.android.gms.location.LocationRequest.*
@@ -21,10 +26,16 @@ import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
+import moxy.MvpAppCompatActivity
 
-const val GEO_LOCATION_REQUEST_COD_SUCCESS=1
+import moxy.ktx.moxyPresenter
+
+
 const val TAG="GEO_TEST"
-class MainActivity : AppCompatActivity() {
+class MainActivity : MvpAppCompatActivity(), MainView {
+
+    private val mainPresenter by moxyPresenter { MainPresenter() }
+
     private val geoService by lazy{
         LocationServices.getFusedLocationProviderClient(this)
     }
@@ -39,7 +50,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        checkPermissions()
+     //   checkPermissions()
        initViews()
         main_hourly_list.apply {
     adapter= MainHourlyListAdapter()
@@ -51,6 +62,8 @@ class MainActivity : AppCompatActivity() {
             layoutManager=LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
             setHasFixedSize(true)
         }
+
+        mainPresenter.enable()
         geoService.requestLocationUpdates(locationRequest,geoCallback,null)
     }
     @SuppressLint("SetTextI18n")
@@ -70,6 +83,43 @@ class MainActivity : AppCompatActivity() {
         main_sumset_mu_tv.text="22:00"
     }
 
+
+    //--moxy
+    override fun displayLocation(data: String) {
+        main_city_name_tv.text=data
+    }
+
+    override fun displayCurrentData(data: WeatherData) {
+        main_city_name_tv.text="Moscow"
+        main_date_tv.text="31 decabr"
+        main_weather_condition_icon.setImageResource(R.drawable.ic_outline_wb_sunny_24)
+        main_temp.text="25\u00B0"
+        main_temp_min_tv.text="19"
+        main_temp_max_tv.text="29"
+        main_weather_image.setImageResource(R.mipmap.could3x)
+        main_pressure_mu_tv.text="1023 hPA"
+        main_humidity_mu_tv.text="28%"
+        main_wind_speed_mu_tv.text="5 m/s"
+        main_sumrise_mu_tv.text="4:30"
+        main_sumset_mu_tv.text="22:00"
+    }
+
+    override fun displayHourlyData(data: List<HourlyWeatherModel>) {
+        (main_hourly_list.adapter as MainHourlyListAdapter).updateData(data)
+    }
+
+    override fun displayDilyData(data: List<DailyWatherModel>) {
+        (main_daily_list.adapter as MainDailyListAdapter).updateData(data)
+    }
+
+    override fun displayError(error: Throwable) {
+
+    }
+
+    override fun setLoading(flag: Boolean) {
+
+    }
+    //--moxy
     //--initial activity code
 
 
@@ -96,42 +146,16 @@ class MainActivity : AppCompatActivity() {
             for (location in geo.locations)
             {
                 mLocation=location
+                mainPresenter.refresh(mLocation.latitude.toString(),mLocation.longitude.toString())
                 Log.d(TAG, "onLocationResult: lat: ${location.latitude};lon: ${location.longitude}; ")
             }
         }
 
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
 
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        Log.d(TAG, "onRequestPermissionsResult: $requestCode")
-    }
 
-    private fun checkPermissions(){
-        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED)
-            {
-                MaterialAlertDialogBuilder(this)
-                    .setTitle("Нам нужны гео данные")
-                    .setMessage("Пж разрешите доступ к  гео данным")
-                    .setPositiveButton("ok"){_,_ ->
-                        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),GEO_LOCATION_REQUEST_COD_SUCCESS)
-                        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),GEO_LOCATION_REQUEST_COD_SUCCESS)
-                    }
-                    .setNegativeButton("Cancel"){
-                        dialog,_ ->
-                        dialog.dismiss()
 
-                    }
-                    .create()
-                    .show()
-        }
-    }
 
     //---------location code
 }
