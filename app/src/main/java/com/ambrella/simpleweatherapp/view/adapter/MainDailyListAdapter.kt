@@ -9,6 +9,8 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.ambrella.simpleweatherapp.R
 import com.ambrella.simpleweatherapp.bussness.model.DailyWatherModel
+import com.ambrella.simpleweatherapp.view.*
+import com.bumptech.glide.Glide
 import com.google.android.material.textview.MaterialTextView
 
 class MainDailyListAdapter: BaseAdapter<DailyWatherModel>() {
@@ -38,11 +40,17 @@ class MainDailyListAdapter: BaseAdapter<DailyWatherModel>() {
         }
 
         override fun bindView(position: Int) {
-            date.text="31 December"
-            popRate.text="25%"
-            minTemp.text="-12°"
-            maxTemp.text="-10°"
-            icon.setImageResource(R.drawable.ic_outline_wb_sunny_24)
+            mData[position].apply {
+                date.text=dt.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)+" "
+                popRate.text=pop.toPercentString(" %")
+                minTemp.text=StringBuilder().append(temp.min.toDegree()).append("°").toString()
+                maxTemp.text=StringBuilder().append(temp.max.toDegree()).append("°").toString()
+                Glide
+                    .with(icon)
+                    .load("https://openweathermap.org/img/wn/${weather[0].icon}.png")
+                   .into(icon)
+            }
+
 
         }
 

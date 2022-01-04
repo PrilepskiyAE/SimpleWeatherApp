@@ -10,7 +10,13 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.ambrella.simpleweatherapp.R
 import com.ambrella.simpleweatherapp.bussness.model.HourlyWeatherModel
+import com.ambrella.simpleweatherapp.view.DAY_WEEK_NAME_LONG
+import com.ambrella.simpleweatherapp.view.toDateFormatOf
+import com.ambrella.simpleweatherapp.view.toDegree
+import com.ambrella.simpleweatherapp.view.toPercentString
+import com.bumptech.glide.Glide
 import com.google.android.material.textview.MaterialTextView
+import kotlinx.android.synthetic.main.activity_main.*
 
 const val TAG="RV_TEST"
 class MainHourlyListAdapter:BaseAdapter<HourlyWeatherModel>() {
@@ -40,10 +46,18 @@ class MainHourlyListAdapter:BaseAdapter<HourlyWeatherModel>() {
         }
 
         override fun bindView(position: Int) {
-            time.text="14:00"
-            temperature.text="-86°"
-            popRate.text="100%"
-            icon.setImageResource(R.drawable.ic_outline_wb_sunny_24)
+            mData[position].apply {
+                time.text=dt.toDateFormatOf(DAY_WEEK_NAME_LONG)+" "
+                temperature.text=StringBuilder().append(temp.toDegree()).append("°").toString()
+                popRate.text=pop.toPercentString(" %")
+
+                Glide
+                    .with(icon)
+                    .load("https://openweathermap.org/img/wn/${weather[0].icon}.png")
+                    .into(icon)
+               // icon.setImageResource(R.drawable.ic_outline_wb_sunny_24)
+            }
+
         }
     }
 
