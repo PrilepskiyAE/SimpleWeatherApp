@@ -14,5 +14,6 @@ class ApiProvider {
         .addConverterFactory(GsonConverterFactory.create())
         .baseUrl("https://api.openweathermap.org/")
         .build()
-    fun providerWeatherApi()=openWeatherMap.create(WeatherApi::class.java)
+    fun providerWeatherApi():WeatherApi=openWeatherMap.create(WeatherApi::class.java)
+    fun providerGeoCodeApi():GeoCodingApi=openWeatherMap.create(GeoCodingApi::class.java)
 }

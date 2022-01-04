@@ -7,6 +7,9 @@ import com.google.android.gms.location.LocationRequest
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ambrella.simpleweatherapp.bussness.model.DailyWatherModel
+import com.ambrella.simpleweatherapp.bussness.model.HourlyWeatherModel
+import com.ambrella.simpleweatherapp.bussness.model.WeatherDataModel
 import com.ambrella.simpleweatherapp.presenters.MainPresenter
 import com.ambrella.simpleweatherapp.view.MainView
 import com.ambrella.simpleweatherapp.view.adapter.MainDailyListAdapter
@@ -79,7 +82,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         main_city_name_tv.text=data
     }
 
-    override fun displayCurrentData(data: WeatherData) {
+    override fun displayCurrentData(data: WeatherDataModel) {
         main_city_name_tv.text="Moscow"
         main_date_tv.text="31 decabr"
         main_weather_condition_icon.setImageResource(R.drawable.ic_outline_wb_sunny_24)
