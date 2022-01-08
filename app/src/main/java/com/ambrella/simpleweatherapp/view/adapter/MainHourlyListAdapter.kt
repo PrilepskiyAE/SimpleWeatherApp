@@ -10,10 +10,8 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.ambrella.simpleweatherapp.R
 import com.ambrella.simpleweatherapp.bussness.model.HourlyWeatherModel
+import com.ambrella.simpleweatherapp.view.*
 import com.ambrella.simpleweatherapp.view.DAY_WEEK_NAME_LONG
-import com.ambrella.simpleweatherapp.view.toDateFormatOf
-import com.ambrella.simpleweatherapp.view.toDegree
-import com.ambrella.simpleweatherapp.view.toPercentString
 import com.bumptech.glide.Glide
 import com.google.android.material.textview.MaterialTextView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -47,7 +45,7 @@ class MainHourlyListAdapter:BaseAdapter<HourlyWeatherModel>() {
 
         override fun bindView(position: Int) {
             mData[position].apply {
-                time.text=dt.toDateFormatOf(DAY_WEEK_NAME_LONG)+" "
+                time.text=dt.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)+" "
                 temperature.text=StringBuilder().append(temp.toDegree()).append("°").toString()
                 popRate.text=pop.toPercentString(" %")
 

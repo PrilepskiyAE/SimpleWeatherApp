@@ -1,19 +1,39 @@
 package com.ambrella.simpleweatherapp
 
 import android.app.Application
+import android.content.Context
 import android.content.Intent
+import androidx.room.Room
+import com.ambrella.simpleweatherapp.bussness.room.OpenWeatherDatabase
+import java.security.AccessControlContext
+import java.security.AccessController.getContext
 
 const val APP_SETTINGS="App settings"
 const val IS_STARTED_UP="Is started up"
 
 class App:Application() {
 
-    //TODO Переменные БД
+val context: AccessControlContext? = getContext()
+    companion object{
+         lateinit var db:OpenWeatherDatabase
+
+
+
+
+
+    }
 
     override fun onCreate() {
         super.onCreate()
 
-            //TODO init DB
+
+                db=Room.databaseBuilder(this,OpenWeatherDatabase::class.java,"OpenWeatherDB")
+                .fallbackToDestructiveMigration()
+                .build()
+
+
+
+
 
         val preferences= getSharedPreferences(APP_SETTINGS, MODE_PRIVATE)
         val flag=preferences.contains(IS_STARTED_UP)

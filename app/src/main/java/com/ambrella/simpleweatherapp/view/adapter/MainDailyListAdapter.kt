@@ -41,7 +41,7 @@ class MainDailyListAdapter: BaseAdapter<DailyWatherModel>() {
 
         override fun bindView(position: Int) {
             mData[position].apply {
-                date.text=dt.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)+" "
+                date.text=dt.toDateFormatOf(DAY_WEEK_NAME_LONG)+" "
                 popRate.text=pop.toPercentString(" %")
                 minTemp.text=StringBuilder().append(temp.min.toDegree()).append("°").toString()
                 maxTemp.text=StringBuilder().append(temp.max.toDegree()).append("°").toString()
